@@ -196,4 +196,4 @@ app.post('/shopify/callback/delete', (req, res) => {
     }
 })
 
-app.listen(3030 || process.env.PORT, () => console.log('Listening to port 3030'))
+app.listen(process.env.PORT || 3030, () => console.log('Listening to port 3030'))
