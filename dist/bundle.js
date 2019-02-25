@@ -34911,7 +34911,11 @@ var StorageAndUpgrade_StorageAndUpgrade = function StorageAndUpgrade() {
   return react_default.a.createElement(unstated_es_Subscribe, {
     to: [containers_FilesContainer]
   }, function (items) {
-    return react_default.a.createElement("div", null, items.state.usedData, " MB of 1GB used.", react_default.a.createElement("span", null, " "), react_default.a.createElement("a", {
+    return react_default.a.createElement("div", {
+      style: {
+        marginLeft: "10px"
+      }
+    }, items.state.usedData, " MB of 1GB used.", react_default.a.createElement("span", null, " "), react_default.a.createElement("a", {
       href: "https://www.google.com/"
     }, "Upgrade plan"));
   });
