@@ -12,7 +12,7 @@ const request = require('request-promise');
 const apiKey = process.env.SHOPIFY_API_KEY;
 const apiSecret = process.env.SHOPIFY_API_SECRET;
 const scopes = 'write_themes';
-const forwardingAddress = "https://theme-images-manager.herokuapp.com/";
+const forwardingAddress = "https://theme-images-manager.herokuapp.com";
 
 const formidable = require('formidable');
 const toBase64 = require('./utils/toBase64');
@@ -25,7 +25,7 @@ app.get('/shopify', (req, res) => {
     const shop = req.query.shop;
     if (shop) {
         const state = nonce();
-        const redirectUri = forwardingAddress + '/shopify/callback';
+        const redirectUri = forwardingAddress;
         const installUrl = 'https://' + shop +
             '/admin/oauth/authorize?client_id=' + apiKey +
             '&scope=' + scopes +
