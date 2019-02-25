@@ -34743,7 +34743,7 @@ function (_Container) {
       });
       return Math.round(sum.reduce(function (acc, val) {
         return acc + val;
-      }) / 1024);
+      }) / (1024 * 1024));
     });
 
     FilesContainer_defineProperty(FilesContainer_assertThisInitialized(FilesContainer_assertThisInitialized(_this)), "checkSameName", function (files) {
