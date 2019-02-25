@@ -34814,11 +34814,11 @@ function (_Container) {
 
       if (method === "newest") {
         files.sort(function (a, b) {
-          return a.lastModified - b.lastModified;
+          return b.lastModified - a.lastModified;
         });
       } else {
         files.sort(function (a, b) {
-          return b.lastModified - a.lastModified;
+          return a.lastModified - b.lastModified;
         });
       }
 
@@ -35321,7 +35321,7 @@ function (_React$Component) {
     _this = Sorting_possibleConstructorReturn(this, (_getPrototypeOf2 = Sorting_getPrototypeOf(Sorting)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     Sorting_defineProperty(Sorting_assertThisInitialized(Sorting_assertThisInitialized(_this)), "state", {
-      selected: 'newest'
+      selected: 'oldest'
     });
 
     Sorting_defineProperty(Sorting_assertThisInitialized(Sorting_assertThisInitialized(_this)), "handleChange", function (newValue) {
