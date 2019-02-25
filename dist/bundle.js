@@ -34947,10 +34947,13 @@ function (_Container) {
         openFileDialog: false
       });
 
-      var value = confirm("Do you want to delete ".concat(fileName.join(", "), "?"));
+      var value = false;
 
       if (typeof fileName === "string") {
         fileName = [fileName];
+        value = confirm("Do you want to delete ".concat(fileName, "?"));
+      } else {
+        value = confirm("Do you want to delete ".concat(fileName.join(", "), "?"));
       }
 
       if (value) {
@@ -35047,6 +35050,7 @@ function (_React$Component) {
 
     DragDrop_defineProperty(DragDrop_assertThisInitialized(DragDrop_assertThisInitialized(_this)), "handleDeletePhoto", function (e, fileName) {
       e.preventDefault();
+      console.log(fileName);
       containers_FilesContainer.deletePhoto(fileName);
 
       _this.handleOpenFileDialog();
