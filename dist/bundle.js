@@ -33910,7 +33910,7 @@ if(false) {}
 
 exports = module.exports = __webpack_require__(36)(false);
 // Module
-exports.push([module.i, ".Hidden {\r\n    display: none;\r\n}\r\n\r\n.Trash-Horizontal {\r\n    z-index: 200;\r\n    display: none;\r\n    position: absolute;\r\n    right: 10px;\r\n    top: 10px;\r\n    background-color: white;\r\n    cursor: pointer;\r\n}\r\n\r\n.Trash-Vertical {\r\n    z-index: 200;\r\n    position: absolute;\r\n    cursor: pointer;\r\n    right: 0;\r\n    margin: 0px 20px\r\n}\r\n\r\n.Cushion {\r\n    padding-top: 20px;\r\n}\r\n\r\n.Checkbox-Hor {\r\n    z-index: 200;\r\n    display: none;\r\n    position: absolute;\r\n    top: 8px;\r\n    left: 5px;\r\n}\r\n\r\n.Checkbox-Ver {\r\n    left: -50px;\r\n    z-index: 100;\r\n    position: absolute;\r\n    margin-top: 10px\r\n}\r\n\r\n.Border {\r\n    border: 2px solid blue;\r\n}\r\n\r\n.Border-Hidden {\r\n    border: 2px solid transparent;\r\n}\r\n\r\n.Image-Thumbnail {\r\n    text-align: center;\r\n    margin: 10px 30px;\r\n    margin-left: 80px;\r\n    position: relative;\r\n    padding: 5px 5px;\r\n}\r\n\r\n.Image-Background {\r\n    background-color: #E7E7E7;\r\n}\r\n\r\n.Badge {\r\n    width: 300px;\r\n    margin: 0 auto;\r\n    text-align: center;\r\n    z-index: 300;\r\n}\r\n\r\n.Badge-Container {\r\n    position: fixed;\r\n    width: 100%;\r\n    top: 300px;\r\n}\r\n\r\n.Polaris-Badge {\r\n    display: block;\r\n}\r\n\r\n.Image-Thumbnail:hover .Trash-Horizontal {\r\n    display: block;\r\n}\r\n\r\n.Image-Thumbnail:hover .Checkbox-Hor {\r\n    display: block;\r\n}", ""]);
+exports.push([module.i, ".Hidden {\r\n    display: none;\r\n}\r\n\r\n.Trash-Horizontal {\r\n    z-index: 200;\r\n    display: none;\r\n    position: absolute;\r\n    right: 10px;\r\n    top: 10px;\r\n    background-color: white;\r\n    cursor: pointer;\r\n}\r\n\r\n.Trash-Vertical {\r\n    z-index: 200;\r\n    position: absolute;\r\n    cursor: pointer;\r\n    right: 0;\r\n    margin: 0px 20px\r\n}\r\n\r\n.Cushion {\r\n    padding-top: 20px;\r\n}\r\n\r\n.Checkbox-Hor {\r\n    z-index: 200;\r\n    display: none;\r\n    position: absolute;\r\n    top: 8px;\r\n    left: 5px;\r\n}\r\n\r\n.Checkbox-Ver {\r\n    left: -50px;\r\n    z-index: 100;\r\n    position: absolute;\r\n    margin-top: 10px\r\n}\r\n\r\n.Border {\r\n    border: 2px solid blue;\r\n}\r\n\r\n.Border-Hidden {\r\n    border: 2px solid transparent;\r\n}\r\n\r\n.Image-Thumbnail {\r\n    text-align: center;\r\n    margin: 10px 30px;\r\n    margin-left: 80px;\r\n    position: relative;\r\n    padding: 5px 5px;\r\n}\r\n\r\n.Image-Background {\r\n    background-color: #F4F6F8;\r\n}\r\n\r\n.Badge {\r\n    width: 300px;\r\n    margin: 0 auto;\r\n    text-align: center;\r\n    z-index: 300;\r\n}\r\n\r\n.Badge-Container {\r\n    position: fixed;\r\n    width: 100%;\r\n    top: 300px;\r\n}\r\n\r\n.Polaris-Badge {\r\n    display: block;\r\n}\r\n\r\n.Image-Thumbnail:hover .Trash-Horizontal {\r\n    display: block;\r\n}\r\n\r\n.Image-Thumbnail:hover .Checkbox-Hor {\r\n    display: block;\r\n}", ""]);
 
 
 
@@ -34719,6 +34719,8 @@ function (_Container) {
       axios_default.a.get('/shopify/callback/images').then(function (res) {
         var files = FilesContainer_toConsumableArray(res.data);
 
+        console.log(res.data);
+
         var totalUsed = _this.calculateUsedStorage(res.data);
 
         files.forEach(function (img) {
@@ -35079,8 +35081,6 @@ function (_React$Component) {
 
     _this = DragDrop_possibleConstructorReturn(this, (_getPrototypeOf2 = DragDrop_getPrototypeOf(DropZoneExample)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    DragDrop_defineProperty(DragDrop_assertThisInitialized(DragDrop_assertThisInitialized(_this)), "state", {});
-
     DragDrop_defineProperty(DragDrop_assertThisInitialized(DragDrop_assertThisInitialized(_this)), "componentDidMount", function () {
       containers_FilesContainer.fetchImages();
     });
@@ -35153,14 +35153,14 @@ function (_React$Component) {
             },
             type: "checkbox"
           }), react_default.a.createElement("i", {
-            className: "far fa-trash-alt \n                                                        ".concat(items.state.vertical ? "Hidden" : "Trash-Horizontal"),
+            className: "far fa-trash-alt \n                                                            ".concat(items.state.vertical ? "Hidden" : "Trash-Horizontal"),
             onClick: function onClick(e) {
               return _this2.handleDeletePhoto(e, file.name);
             }
           }), react_default.a.createElement("div", {
             className: items.state.selectedFiles.includes(file.name) ? "Border" : "Border-Hidden"
           }, react_default.a.createElement(Thumbnail, {
-            size: items.state.vertical ? "small" : "large",
+            size: items.state.vertical ? "medium" : "large",
             alt: file.name,
             source: validatedTypes.indexOf(file.type) > 0 ? [file.public_url ? file.public_url : window.URL.createObjectURL(file)] : 'https://cdn.shopify.com/s/files/1/0757/9955/files/New_Post.png?12678548500147524304'
           })), file.name, items.state.uploading && !items.state.holdFiles.some(function (img) {
@@ -35173,7 +35173,7 @@ function (_React$Component) {
             progress: items.state.progress,
             size: "small"
           })) : ""), react_default.a.createElement("div", null, react_default.a.createElement("i", {
-            className: "far fa-trash-alt \n                                                            ".concat(items.state.vertical ? "Trash-Vertical" : "Hidden"),
+            className: "far fa-trash-alt \n                                                                ".concat(items.state.vertical ? "Trash-Vertical" : "Hidden"),
             onClick: function onClick(e) {
               return _this2.handleDeletePhoto(e, file.name);
             }
