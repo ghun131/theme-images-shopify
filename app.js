@@ -12,7 +12,7 @@ const request = require('request-promise');
 const apiKey = process.env.SHOPIFY_API_KEY;
 const apiSecret = process.env.SHOPIFY_API_SECRET;
 const scopes = 'write_themes';
-const forwardingAddress = "https://theme-images-manager.herokuapp.com";
+const forwardingAddress = "https://theme-images-manager.herokuapp.com/";
 
 const formidable = require('formidable');
 const toBase64 = require('./utils/toBase64');
@@ -25,7 +25,7 @@ app.get('/shopify', (req, res) => {
     const shop = req.query.shop;
     if (shop) {
         const state = nonce();
-        const redirectUri = forwardingAddress;
+        const redirectUri = forwardingAddress + '/shopify/callback';
         const installUrl = 'https://' + shop +
             '/admin/oauth/authorize?client_id=' + apiKey +
             '&scope=' + scopes +
@@ -90,22 +90,12 @@ app.get('/shopify/callback', (req, res) => {
                 'X-Shopify-Access-Token': accessToken,
             };
 
-                console.log('TOKEN', accessToken);
-                console.log(shopRequestUrl);
-
             request.get(shopRequestUrl, {headers: shopRequestHeaders})
             .then((shopRes) => {
                 let shopObj = JSON.parse(shopRes)
                 res.send(shopRes);
             })
-            .catch((error) => {
-                console.log(error.message)
-            });
-        })
-        .catch((error) => {
-            console.log(error.message)                
-        });
-        
+        })        
     } else {
         res.status(400).send('Required parameters missing');
     }
@@ -127,13 +117,9 @@ app.get('/shopify/callback/images', (req, res) => {
         })
         res.send(images);
     })
-    .catch((error) => {
-        console.log(error.message)
-    });
 })
 
 app.put('/shopify/callback/upload', (req, res) => {
-    console.log('uploading...')
     let form = new formidable.IncomingForm();
     
     form.multiples = true;
@@ -167,9 +153,6 @@ app.put('/shopify/callback/upload', (req, res) => {
                     res.send(data)
                 }
             })
-            .catch((error) => {
-                console.log(error.message);
-            });
         }
     });
 })
@@ -181,7 +164,6 @@ app.post('/shopify/callback/delete', (req, res) => {
 
     for (let i=0; i < req.body.name.length; i++) {
         const shopRequestUrl = `https://unique-test-store-131.myshopify.com/admin/themes/46142128176/assets.json?asset[key]=assets/${req.body.name[i]}`;
-        console.log(req.body.name)
         request.delete({
             url: shopRequestUrl,
             headers: shopRequestHeaders,
@@ -190,9 +172,6 @@ app.post('/shopify/callback/delete', (req, res) => {
         .then((shopRes) => {
             res.send('Done removal!!!')
         })
-        .catch((error) => {
-            console.log(error.message);
-        });
     }
 })
 

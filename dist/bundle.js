@@ -34719,8 +34719,6 @@ function (_Container) {
       axios_default.a.get('/shopify/callback/images').then(function (res) {
         var files = FilesContainer_toConsumableArray(res.data);
 
-        console.log(res.data);
-
         var totalUsed = _this.calculateUsedStorage(res.data);
 
         files.forEach(function (img) {
@@ -34732,8 +34730,6 @@ function (_Container) {
           holdFiles: res.data,
           usedData: totalUsed
         });
-      }).catch(function (err) {
-        return console.log(err.message);
       });
     });
 
@@ -34750,7 +34746,6 @@ function (_Container) {
       var fileNames = files.map(function (f) {
         return f.name;
       });
-      console.log(fileNames);
       return _this.state.files.some(function (f) {
         return fileNames.includes(f.name);
       });
@@ -34764,7 +34759,6 @@ function (_Container) {
           uploading: true
         });
 
-        console.log(files);
         var data = new browser_default.a();
         files.forEach(function (file) {
           data.append('image', file);
@@ -34783,8 +34777,6 @@ function (_Container) {
           setTimeout(function () {
             return _this.fetchImages();
           }, 1000);
-        }).catch(function (err) {
-          return console.log(err.message);
         });
       } else {
         _this.setState({
@@ -34854,12 +34846,9 @@ function (_Container) {
         var newArr = selectedFiles.filter(function (el) {
           return !(el === file);
         });
-        console.log(newArr);
 
         _this.setState({
           selectedFiles: newArr
-        }, function () {
-          return console.log(_this.state.selectedFiles);
         });
       }
     });
@@ -34879,19 +34868,14 @@ function (_Container) {
       }
 
       if (value) {
-        console.log(fileName);
         axios_default.a.post('/shopify/callback/delete', {
           name: fileName
         }).then(function (res) {
-          console.log(res.data);
-
           _this.fetchImages();
 
           _this.setState({
             selectedFiles: []
           });
-        }).catch(function (err) {
-          return console.log(err.message);
         });
       }
     });
