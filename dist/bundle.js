@@ -34741,9 +34741,9 @@ function (_Container) {
       var sum = files.map(function (img) {
         return img.size;
       });
-      return Math.round(sum.reduce(function (acc, val) {
+      return (sum.reduce(function (acc, val) {
         return acc + val;
-      }) / (1024 * 1024));
+      }) / (1024 * 1024)).toFixed(2);
     });
 
     FilesContainer_defineProperty(FilesContainer_assertThisInitialized(FilesContainer_assertThisInitialized(_this)), "checkSameName", function (files) {
@@ -34918,6 +34918,7 @@ var StorageAndUpgrade_StorageAndUpgrade = function StorageAndUpgrade() {
         marginLeft: "10px"
       }
     }, items.state.usedData, " MB of 1GB used.", react_default.a.createElement("span", null, " "), react_default.a.createElement("a", {
+      target: "_blank",
       href: "https://www.google.com/"
     }, "Upgrade plan"));
   });
