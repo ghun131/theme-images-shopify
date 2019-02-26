@@ -25,7 +25,7 @@ app.get('/shopify', (req, res) => {
     const shop = req.query.shop;
     if (shop) {
         const state = nonce();
-        const redirectUri = forwardingAddress;
+        const redirectUri = forwardingAddress + "/shopify/callback";
         const installUrl = 'https://' + shop +
             '/admin/oauth/authorize?client_id=' + apiKey +
             '&scope=' + scopes +
