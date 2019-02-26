@@ -34734,12 +34734,16 @@ function (_Container) {
     });
 
     FilesContainer_defineProperty(FilesContainer_assertThisInitialized(FilesContainer_assertThisInitialized(_this)), "calculateUsedStorage", function (files) {
-      var sum = files.map(function (img) {
-        return img.size;
-      });
-      return (sum.reduce(function (acc, val) {
-        return acc + val;
-      }) / (1024 * 1024)).toFixed(2);
+      if (!files[0]) {
+        return 0;
+      } else {
+        var sum = files.map(function (img) {
+          return img.size;
+        });
+        return (sum.reduce(function (acc, val) {
+          return acc + val;
+        }) / (1024 * 1024)).toFixed(2);
+      }
     });
 
     FilesContainer_defineProperty(FilesContainer_assertThisInitialized(FilesContainer_assertThisInitialized(_this)), "checkSameName", function (files) {
